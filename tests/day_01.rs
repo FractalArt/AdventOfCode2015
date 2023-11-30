@@ -1,5 +1,3 @@
-use aoc2015;
-
 #[test]
 fn test_day_01() {
     let data = std::fs::read_to_string("data/day_01.txt").unwrap();

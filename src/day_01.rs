@@ -4,22 +4,22 @@
 
 /// The solution to task 1 of day 1.
 pub fn day_01_1(data: &str) -> i32 {
-    data.chars()
-        .map(|c| if c == '(' {1} else {-1})
-        .sum()
+    data.chars().map(|c| if c == '(' { 1 } else { -1 }).sum()
 }
 
 /// The solution to task 2 of day 1
 pub fn day_01_2(data: &str) -> usize {
     data.chars()
         .scan(0, |state, x| {
-            *state += if x == '(' {1} else {-1};
+            *state += if x == '(' { 1 } else { -1 };
             if *state < 0 {
                 None
             } else {
                 Some(*state)
             }
-        } ).count() + 1
+        })
+        .count()
+        + 1
 }
 
 #[cfg(test)]
@@ -43,5 +43,4 @@ mod tests {
     fn test_day_01_2() {
         assert_eq!(day_01_2("()())"), 5);
     }
-
 }
