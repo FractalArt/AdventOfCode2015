@@ -3,23 +3,12 @@
 //! This module contains the solution of the [fifth day's challenges](https://adventofcode.com/2015/day/5).
 
 fn is_nice(s: &str) -> bool {
-    if s.chars()
+    s.chars()
         .filter(|c| ['i', 'u', 'e', 'o', 'a'].contains(c))
         .count()
-        < 3
-    {
-        return false;
-    }
-
-    if s.as_bytes().windows(2).filter(|w| w[0] == w[1]).count() < 1 {
-        return false;
-    }
-
-    if s.contains("ab") || s.contains("cd") || s.contains("pq") || s.contains("xy") {
-        return false;
-    }
-
-    true
+        >= 3
+        && s.as_bytes().windows(2).filter(|w| w[0] == w[1]).count() > 0
+        && !(s.contains("ab") || s.contains("cd") || s.contains("pq") || s.contains("xy"))
 }
 
 /// The solution to task 1 of day 5.
