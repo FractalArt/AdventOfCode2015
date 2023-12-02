@@ -11,7 +11,7 @@ fn is_nice_1(s: &str) -> bool {
         && !(s.contains("ab") || s.contains("cd") || s.contains("pq") || s.contains("xy"))
 }
 
-pub fn is_nice_2(s: &str) -> bool {
+fn is_nice_2(s: &str) -> bool {
     s.as_bytes().windows(3).filter(|w| w[0] == w[2]).count() > 0
         && s.as_bytes()
             .windows(2)
