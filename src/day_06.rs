@@ -71,9 +71,7 @@ mod tests {
     #[test]
     fn test_day_06_2() {
         let data_1 = ["turn on 0,0 through 0,0".to_string()];
-        let data_2 = [
-            "toggle 0,0 through 999,999 would increase the total brightness by 2000000".to_string(),
-        ];
+        let data_2 = ["toggle 0,0 through 999,999".to_string()];
 
         assert_eq!(day_06_2(&data_1), 1);
         assert_eq!(day_06_2(&data_2), 2_000_000);
