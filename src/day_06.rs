@@ -20,7 +20,7 @@ fn parse_instruction(instruction: &str) -> (&str, usize, usize, usize, usize) {
     )
 }
 
-/// The solution to task 1 of day 5.
+/// The solution to task 1 of day 6.
 pub fn day_06_1(data: &[String]) -> usize {
     data.iter()
         .fold(Array2::zeros((1000, 1000)), |mut grid, ins| {
@@ -37,7 +37,7 @@ pub fn day_06_1(data: &[String]) -> usize {
         .sum()
 }
 
-/// The solution to task 2 of day 5.
+/// The solution to task 2 of day 6.
 pub fn day_06_2(data: &[String]) -> usize {
     data.iter()
         .fold(Array2::zeros((1000, 1000)), |mut grid, ins| {
