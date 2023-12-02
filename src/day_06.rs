@@ -21,16 +21,16 @@ fn parse_instruction(instruction: &str) -> (&str, usize, usize, usize, usize) {
 }
 
 /// The solution to task 1 of day 5.
-pub fn day_06_1(data: &[String]) -> isize {
+pub fn day_06_1(data: &[String]) -> usize {
     data.iter()
         .fold(Array2::zeros((1000, 1000)), |mut grid, ins| {
             let (action, x1, y1, x2, y2) = parse_instruction(ins);
             match action {
-                "turn on" => grid.slice_mut(s![x1..=x2, y1..=y2]).fill(1isize),
+                "turn on" => grid.slice_mut(s![x1..=x2, y1..=y2]).fill(1),
                 "turn off" => grid.slice_mut(s![x1..=x2, y1..=y2]).fill(0),
                 _ => grid
                     .slice_mut(s![x1..=x2, y1..=y2])
-                    .mapv_inplace(|x| (x - 1).abs()),
+                    .mapv_inplace(|x| if x == 1 { 0 } else { 1 }),
             };
             grid
         })
@@ -38,15 +38,16 @@ pub fn day_06_1(data: &[String]) -> isize {
 }
 
 /// The solution to task 2 of day 5.
-pub fn day_06_2(data: &[String]) -> isize {
+pub fn day_06_2(data: &[String]) -> usize {
     data.iter()
         .fold(Array2::zeros((1000, 1000)), |mut grid, ins| {
             let (action, x1, y1, x2, y2) = parse_instruction(ins);
             match action {
                 "turn on" => grid.slice_mut(s![x1..=x2, y1..=y2]).mapv_inplace(|x| x + 1),
-                "turn off" => grid
-                    .slice_mut(s![x1..=x2, y1..=y2])
-                    .mapv_inplace(|x| std::cmp::min(x - 1, 0)),
+                "turn off" => {
+                    grid.slice_mut(s![x1..=x2, y1..=y2])
+                        .mapv_inplace(|x| if x > 0 { x - 1 } else { 0 })
+                }
                 _ => grid.slice_mut(s![x1..=x2, y1..=y2]).mapv_inplace(|x| x + 2),
             };
             grid
